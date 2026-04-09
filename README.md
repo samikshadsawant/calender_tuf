@@ -89,15 +89,7 @@ This project focuses on rich UI/UX, smooth interactions, and intuitive usability
 
 ---
 
-## 📁 Project Structure
-app/
-├── components/
-│ ├── HeroSection.tsx
-│ ├── CalendarGrid.tsx
-│ ├── NotesPanel.tsx
-│ ├── NoteModal.tsx
-│ └── utils.ts
-└── page.tsx
+
 
 
 ---
