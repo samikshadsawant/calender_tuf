@@ -8,6 +8,19 @@ import {
   rgb,
   rgba,
 } from "./utils";
+type Props = {
+  monthNotes: [string, { text: string; tag: string | null }][];
+  month: number;
+  year: number;
+  accent: { r: number; g: number; b: number };
+  onNoteClick: (
+    y: number,
+    m: number,
+    d: number,
+    text: string,
+    tag: string | null
+  ) => void;
+};
 
 export default function NotesPanel({
   monthNotes,
@@ -15,7 +28,7 @@ export default function NotesPanel({
   year,
   accent,
   onNoteClick,
-}) {
+}: Props ) {
   const A = accent;
 
   return (

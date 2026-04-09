@@ -11,6 +11,23 @@ import {
   rgb,
   rgba,
 } from "./utils";
+type Props = {
+  year: number;
+  month: number;
+  dir: number;
+  animK: number;
+  rangeStart: Date | null;
+  rangeEnd: Date | null;
+  onDayDown: (d: number) => void;
+  onDayEnter: (d: number) => void;
+  onDayUp: (d: number) => void;
+  notes: Record<string, { text: string; tag: string | null }>;
+  accent: { r: number; g: number; b: number };
+  nav: (d: number) => void;
+  jumpToday: () => void;
+  selDays: number | null;
+  monthNotesCount: number;
+};
 
 export default function CalendarGrid({
   year,
@@ -28,7 +45,7 @@ export default function CalendarGrid({
   jumpToday,
   selDays,
   monthNotesCount,
-}) {
+}: Props) {
   const now = new Date();
   const A   = accent;
 

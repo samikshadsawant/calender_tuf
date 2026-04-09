@@ -7,6 +7,18 @@ import {
   extractAccent,
   rgb,
 } from "./utils";
+type Props = {
+  heroIdx: number;
+  setHero: (value: number) => void;
+  customImg: string | null;
+  setCustom: (value: string | null) => void;
+  accent: { r: number; g: number; b: number };
+  setAccent: (value: { r: number; g: number; b: number }) => void;
+  year: number;
+  month: number;
+  onTouchStart: (e: React.TouchEvent) => void;
+  onTouchEnd: (e: React.TouchEvent) => void;
+};
 
 export default function HeroSection({
   heroIdx,
@@ -19,7 +31,7 @@ export default function HeroSection({
   month,
   onTouchStart,
   onTouchEnd,
-}) {
+}:Props) {
   const imgRefs = useRef({});
   const fileRef = useRef(null);
 

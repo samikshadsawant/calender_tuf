@@ -80,3 +80,12 @@ npm install
 npm run dev
 4️⃣ Open in Browser
 http://localhost:3000
+🎯 Highlights
+Strong focus on UI/UX design + product thinking
+Clean component-based architecture
+Smooth animations and transitions
+Fully interactive without backend
+📹 Demo (Add your link here)
+Loom / YouTube: [Add your video link]
+🌐 Live Demo (Optional)
+Vercel / Netlify: [Add your deployed link

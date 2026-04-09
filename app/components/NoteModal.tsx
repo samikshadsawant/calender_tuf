@@ -8,6 +8,18 @@ import {
   asDate,
   rgb,
 } from "./utils";
+type Props = {
+  modal: { y: number; m: number; d: number } | null;
+  setModal: (value: { y: number; m: number; d: number } | null) => void;
+  mText: string;
+  setMText: (value: string) => void;
+  mTag: string | null;
+  setMTag: (value: string | null) => void;
+  notes: Record<string, { text: string; tag: string | null }>;
+  accent: { r: number; g: number; b: number };
+  saveNote: () => void;
+  delNote: () => void;
+};
 
 export default function NoteModal({
   modal,
@@ -20,7 +32,7 @@ export default function NoteModal({
   accent,
   saveNote,
   delNote,
-}) {
+}: Props) {
   if (!modal) return null;
 
   const A          = accent;
