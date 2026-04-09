@@ -7,30 +7,34 @@ import CalendarGrid from "./components/CalendarGrid";
 import NoteModal    from "./components/NoteModal";
 import NotesPanel   from "./components/NotesPanel";
 
+type Accent = { r: number; g: number; b: number };
+type ModalState = { y: number; m: number; d: number } | null;
+type NoteMap = Record<string, { text: string; tag: string | null }>;
+
 export default function WallCalendar() {
   const now = new Date();
 
-  const [year,  setYear]  = useState(now.getFullYear());
-  const [month, setMonth] = useState(now.getMonth());
-  const [dir,   setDir]   = useState(0);
-  const [animK, setAnimK] = useState(0);
+  const [year,  setYear]  = useState<number>(now.getFullYear());
+  const [month, setMonth] = useState<number>(now.getMonth());
+  const [dir,   setDir]   = useState<number>(0);
+  const [animK, setAnimK] = useState<number>(0);
 
-  const [heroIdx,   setHero]   = useState(0);
-  const [customImg, setCustom] = useState(null);
-  const [accent,    setAccent] = useState(DEFAULT_ACCENT);
+  const [heroIdx,   setHero]   = useState<number>(0);
+  const [customImg, setCustom] = useState<string | null>(null);
+  const [accent,    setAccent] = useState<Accent>(DEFAULT_ACCENT);
 
-  const [rangeStart, setRS] = useState(null);
-  const [rangeEnd,   setRE] = useState(null);
-  const dragging   = useRef(false);
-  const dragAnchor = useRef(null);
+  const [rangeStart, setRS] = useState<Date | null>(null);
+  const [rangeEnd,   setRE] = useState<Date | null>(null);
+  const dragging   = useRef<boolean>(false);
+  const dragAnchor = useRef<Date | null>(null);
 
-  const [notes, setNotes] = useState({});
+  const [notes, setNotes] = useState<NoteMap>({});
 
-  const [modal, setModal] = useState(null);
-  const [mText, setMText] = useState("");
-  const [mTag,  setMTag]  = useState(null);
+  const [modal, setModal] = useState<ModalState>(null);
+  const [mText, setMText] = useState<string>("");
+  const [mTag,  setMTag]  = useState<string | null>(null);
 
-  const touchX = useRef(null);
+  const touchX = useRef<number | null>(null);
 
   useEffect(() => {
     if (customImg) return;
@@ -42,7 +46,7 @@ export default function WallCalendar() {
   }, [customImg]);
 
   useEffect(() => {
-    const handler = (e) => {
+    const handler = (e: KeyboardEvent) => {
       if (modal) return;
       if (e.key === "ArrowLeft")  nav(-1);
       if (e.key === "ArrowRight") nav(1);
@@ -52,7 +56,7 @@ export default function WallCalendar() {
   });
 
   const nav = useCallback(
-    (d) => {
+    (d: number) => {
       setDir(d);
       setAnimK((k) => k + 1);
       setRS(null);
@@ -81,14 +85,14 @@ export default function WallCalendar() {
     setRE(null);
   };
 
-  const onDayDown = (d) => {
-    dragging.current  = true;
+  const onDayDown = (d: number) => {
+    dragging.current   = true;
     dragAnchor.current = asDate(year, month, d);
     setRS(dragAnchor.current);
     setRE(null);
   };
 
-  const onDayEnter = (d) => {
+  const onDayEnter = (d: number) => {
     if (!dragging.current || !dragAnchor.current) return;
     const cur = asDate(year, month, d);
     if (cur >= dragAnchor.current) {
@@ -100,7 +104,7 @@ export default function WallCalendar() {
     }
   };
 
-  const onDayUp = (d) => {
+  const onDayUp = (d: number) => {
     if (!dragging.current) return;
     dragging.current = false;
     const cur = asDate(year, month, d);
@@ -121,18 +125,19 @@ export default function WallCalendar() {
     dragging.current = false;
   };
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: React.TouchEvent) => {
     touchX.current = e.touches[0].clientX;
   };
 
-  const onTouchEnd = (e) => {
-    if (!touchX.current) return;
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchX.current === null) return;
     const dx = e.changedTouches[0].clientX - touchX.current;
     if (Math.abs(dx) > 48) nav(dx < 0 ? 1 : -1);
     touchX.current = null;
   };
 
   const saveNote = () => {
+    if (!modal) return;
     const k = toKey(modal.y, modal.m, modal.d);
     setNotes((prev) =>
       mText.trim()
@@ -143,13 +148,20 @@ export default function WallCalendar() {
   };
 
   const delNote = () => {
+    if (!modal) return;
     setNotes((prev) =>
       (({ [toKey(modal.y, modal.m, modal.d)]: _, ...rest }) => rest)(prev),
     );
     setModal(null);
   };
 
-  const handleNoteClick = (y, m, d, text, tag) => {
+  const handleNoteClick = (
+    y: number,
+    m: number,
+    d: number,
+    text: string,
+    tag: string | null,
+  ) => {
     setModal({ y, m, d });
     setMText(text);
     setMTag(tag ?? null);
@@ -162,7 +174,7 @@ export default function WallCalendar() {
 
   const selDays =
     rangeStart && rangeEnd
-      ? Math.round((rangeEnd - rangeStart) / 86400000) + 1
+      ? Math.round((rangeEnd.getTime() - rangeStart.getTime()) / 86400000) + 1
       : null;
 
   const A = accent;
