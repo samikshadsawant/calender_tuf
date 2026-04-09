@@ -11,6 +11,7 @@ import {
   rgb,
   rgba,
 } from "./utils";
+
 type Props = {
   year: number;
   month: number;
@@ -28,6 +29,8 @@ type Props = {
   selDays: number | null;
   monthNotesCount: number;
 };
+
+const H = HOLIDAYS as Record<string, string | undefined>;
 
 export default function CalendarGrid({
   year,
@@ -77,7 +80,7 @@ export default function CalendarGrid({
     now.getMonth()    === month &&
     now.getDate()     === d;
 
-  const holiday  = (d: number) => HOLIDAYS[toKey(year, month, d)];
+  const holiday  = (d: number) => H[toKey(year, month, d)];
   const note     = (d: number) => notes[toKey(year, month, d)];
 
   return (

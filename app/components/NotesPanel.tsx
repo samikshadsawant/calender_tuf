@@ -8,6 +8,7 @@ import {
   rgb,
   rgba,
 } from "./utils";
+
 type Props = {
   monthNotes: [string, { text: string; tag: string | null }][];
   month: number;
@@ -22,13 +23,15 @@ type Props = {
   ) => void;
 };
 
+const H = HOLIDAYS as Record<string, string | undefined>;
+
 export default function NotesPanel({
   monthNotes,
   month,
   year,
   accent,
   onNoteClick,
-}: Props ) {
+}: Props) {
   const A = accent;
 
   return (
@@ -106,7 +109,7 @@ export default function NotesPanel({
             const [ky, km, kd] = k.split("-").map(Number);
             const dow          = WEEKDAYS[(asDate(ky, km - 1, kd).getDay() + 6) % 7];
             const tag          = NOTE_TAGS.find((t) => t.id === nd.tag);
-            const holidayName  = HOLIDAYS[k];
+            const holidayName  = H[k];
 
             return (
               <div

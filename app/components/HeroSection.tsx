@@ -7,6 +7,7 @@ import {
   extractAccent,
   rgb,
 } from "./utils";
+
 type Props = {
   heroIdx: number;
   setHero: (value: number) => void;
@@ -31,7 +32,7 @@ export default function HeroSection({
   month,
   onTouchStart,
   onTouchEnd,
-}:Props) {
+}: Props) {
   const imgRefs = useRef<{ [key: number]: HTMLImageElement }>({});
   const fileRef = useRef<HTMLInputElement>(null);
 

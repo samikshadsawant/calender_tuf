@@ -8,6 +8,7 @@ import {
   asDate,
   rgb,
 } from "./utils";
+
 type Props = {
   modal: { y: number; m: number; d: number } | null;
   setModal: (value: { y: number; m: number; d: number } | null) => void;
@@ -20,6 +21,8 @@ type Props = {
   saveNote: () => void;
   delNote: () => void;
 };
+
+const H = HOLIDAYS as Record<string, string | undefined>;
 
 export default function NoteModal({
   modal,
@@ -35,10 +38,10 @@ export default function NoteModal({
 }: Props) {
   if (!modal) return null;
 
-  const A          = accent;
-  const dateKey    = toKey(modal.y, modal.m, modal.d);
-  const dayOfWeek  = WEEKDAYS[(asDate(modal.y, modal.m, modal.d).getDay() + 6) % 7];
-  const holidayName = HOLIDAYS[dateKey];
+  const A           = accent;
+  const dateKey     = toKey(modal.y, modal.m, modal.d);
+  const dayOfWeek   = WEEKDAYS[(asDate(modal.y, modal.m, modal.d).getDay() + 6) % 7];
+  const holidayName = H[dateKey];
   const hasExisting = !!notes[dateKey];
 
   return (
