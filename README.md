@@ -109,18 +109,14 @@ git clone https://github.com/YOUR_USERNAME/calendar_tuf.git
 cd calendar_tuf
 npm install
 npm run dev
-<<<<<<< HEAD
+
 4️⃣ Open in Browser
 http://localhost:3000
-🎯 Highlights
-Strong focus on UI/UX design + product thinking
-Clean component-based architecture
-Smooth animations and transitions
-Fully interactive without backend
+
 📹 Demo (Add your link here)
-Loom / YouTube: [Add your video link]
+Loom / YouTube: https://youtu.be/9IneZDl2KFg
 🌐 Live Demo (Optional)
-Vercel / Netlify: [Add your deployed link
+Vercel / Netlify: https://calender-tuf-seven.vercel.app/
 =======
 Open 👉 http://localhost:3000
->>>>>>> 5268a3be3a551a3e30a4b6b4ebb837b2e53b5657
+
