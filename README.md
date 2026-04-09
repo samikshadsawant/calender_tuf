@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📅 Interactive Wall Calendar Component
 
-## Getting Started
+A modern, aesthetic wall calendar UI built with React (Next.js) + Tailwind CSS, inspired by a physical calendar design. This project focuses on rich UI/UX, smooth interactions, and intuitive usability.
 
-First, run the development server:
-
-```bash
+✨ Key UI/UX Features
+🎨 Dynamic Hero Section + Adaptive Theme
+Displays rotating nature images as the hero section.
+Extracts dominant colors from images using canvas.
+Entire UI (buttons, highlights, accents) adapts dynamically to the image theme.
+Users can also:
+Upload their own image 📷
+Reset to default images
+📆 Smart Date Range Selection (Drag & Select)
+Click and drag across dates to select a range.
+No need for separate start/end clicks → more natural UX.
+Visual feedback includes:
+Start date
+End date
+Highlighted range
+🔁 Smooth Navigation + Smart Controls
+Navigate months using:
+Arrow buttons ⬅️ ➡️
+Keyboard keys (← →)
+Swipe gestures (mobile)
+Includes “Jump to Today” button:
+Instantly returns user to the current month
+📝 Notes System with Tagging
+Add notes to any specific date via modal.
+Tag options available:
+💼 Work
+🏠 Personal
+⏰ Reminder
+⚠️ Urgent
+Notes are:
+Saved per date
+Editable & deletable
+📌 Centralized Monthly Notes View
+All notes automatically appear in a general notes section.
+Users don’t need to click individual dates to view notes.
+Features:
+Clean card layout
+Tag-based color indicators
+Holiday highlights 🎉
+📊 Smart Counters & Insights
+Displays:
+📍 Number of notes in the current month
+📅 Number of days selected in a range
+Helps users quickly understand their activity
+📅 Holiday Indicators
+Predefined holidays are highlighted.
+Visual indicators:
+Dot markers on calendar
+Highlight inside notes panel
+📱 Fully Responsive Design
+Desktop → Side-by-side layout (Hero + Calendar)
+Mobile → Stacked layout
+Smooth interaction on touch devices
+🛠 Tech Stack
+Framework: Next.js (React)
+Styling: Tailwind CSS + Inline Styling
+State Management: React Hooks (useState, useEffect, useRef)
+Image Processing: Canvas API (for color extraction)
+Storage: Local component state (frontend-only as per requirement)
+📂 Project Structure
+app/
+ ├── components/
+ │   ├── HeroSection.tsx
+ │   ├── CalendarGrid.tsx
+ │   ├── NotesPanel.tsx
+ │   ├── NoteModal.tsx
+ │   └── utils.ts
+ └── page.tsx
+🚀 How to Run Locally
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/calendar_tuf.git
+cd calendar_tuf
+2️⃣ Install Dependencies
+npm install
+3️⃣ Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4️⃣ Open in Browser
+http://localhost:3000
