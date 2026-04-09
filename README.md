@@ -90,3 +90,23 @@ This project focuses on rich UI/UX, smooth interactions, and intuitive usability
 ---
 
 ## 📁 Project Structure
+app/
+├── components/
+│ ├── HeroSection.tsx
+│ ├── CalendarGrid.tsx
+│ ├── NotesPanel.tsx
+│ ├── NoteModal.tsx
+│ └── utils.ts
+└── page.tsx
+
+
+---
+
+## 🚀 How to Run Locally
+
+```bash
+git clone https://github.com/YOUR_USERNAME/calendar_tuf.git
+cd calendar_tuf
+npm install
+npm run dev
+Open 👉 http://localhost:3000
