@@ -56,29 +56,29 @@ export default function CalendarGrid({
     ...Array.from({ length: dim }, (_, i) => i + 1),
   ];
 
-  const isStart  = (d) =>
+  const isStart  = (d: number) =>
     rangeStart?.getFullYear() === year &&
     rangeStart?.getMonth()    === month &&
     rangeStart?.getDate()     === d;
 
-  const isEnd_   = (d) =>
+  const isEnd_   = (d: number) =>
     rangeEnd?.getFullYear() === year &&
     rangeEnd?.getMonth()    === month &&
     rangeEnd?.getDate()     === d;
 
-  const inRange  = (d) => {
+  const inRange  = (d: number) => {
     if (!rangeStart || !rangeEnd) return false;
     const cur = asDate(year, month, d);
     return cur > rangeStart && cur < rangeEnd;
   };
 
-  const isToday  = (d) =>
+  const isToday  = (d: number) =>
     now.getFullYear() === year &&
     now.getMonth()    === month &&
     now.getDate()     === d;
 
-  const holiday  = (d) => HOLIDAYS[toKey(year, month, d)];
-  const note     = (d) => notes[toKey(year, month, d)];
+  const holiday  = (d: number) => HOLIDAYS[toKey(year, month, d)];
+  const note     = (d: number) => notes[toKey(year, month, d)];
 
   return (
     <div

@@ -32,8 +32,8 @@ export default function HeroSection({
   onTouchStart,
   onTouchEnd,
 }:Props) {
-  const imgRefs = useRef({});
-  const fileRef = useRef(null);
+  const imgRefs = useRef<{ [key: number]: HTMLImageElement }>({});
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (customImg) return;
@@ -44,19 +44,20 @@ export default function HeroSection({
     }
   }, [heroIdx, customImg, setAccent]);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (ev) => {
-      setCustom(ev.target.result);
+      const result = (ev.target as FileReader).result as string;
+      setCustom(result);
       const img = new Image();
       img.onload = () => {
         const c = extractAccent(img);
         if (c) setAccent(c);
       };
-      img.src = ev.target.result;
+      img.src = result;
     };
     reader.readAsDataURL(file);
     e.target.value = "";
